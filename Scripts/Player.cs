@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
     public float speed = 50f;
     public float maxSpeed = 1;
+    public float jumpPower = 150f;
 
     public bool grounded;
 
@@ -22,7 +23,8 @@ public class Player : MonoBehaviour {
     void Update() {
         anim.SetBool("Grounded",grounded);
         anim.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal"))); // Get speed and does stuff
-        if(Input.GetAxis("Horizontal")<-0.1f)
+
+        if(Input.GetAxis("Horizontal")<-0.1f) //Does the flip when walking so if walking in negative direction flips the Ben
             {
             transform.localScale = new Vector3(-1, 1, 1);
             }
@@ -30,6 +32,16 @@ public class Player : MonoBehaviour {
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
+
+        //Jumping
+
+
+            if (Input.GetButtonDown("Jump") && grounded == true)
+            {
+                rb2d.AddForce(Vector2.up * jumpPower);
+
+            }
+
 
     }
 

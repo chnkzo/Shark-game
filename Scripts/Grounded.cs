@@ -9,12 +9,18 @@ public class Grounded : MonoBehaviour {
         player = gameObject.GetComponentInParent<Player>();
     }
 
-    void OnTrigEnter2d(Collider2D col)//get called when trigger enters something
+    void OnTriggerEnter2D(Collider2D col)//get called when trigger enters something
     {
         player.grounded = true;
     }
 
-    void OnTrigExit2d(Collider2D col)//when trigger exits something
+    private void OnTriggerStay2D(Collider2D collision) //a function that gets called when a trigger stays on the ground?
+    {
+        player.grounded = true;
+
+    }
+
+    void OnTriggerExit2D(Collider2D col)//when trigger exits something
     {
         player.grounded = false;
     }
